@@ -1,0 +1,108 @@
+SUBSYSTEM_DEF(city_time)
+	name = "City Time"
+	init_order = INIT_ORDER_DEFAULT
+	wait = 200
+	priority = FIRE_PRIORITY_DEFAULT
+
+	var/hour = 21
+	var/minutes = 0
+
+	var/timeofnight = "21:00"
+
+/proc/get_next_hour(number)
+	if(number == 23)
+		return 0
+	else
+		return number+1
+
+/proc/get_watch_number(number)
+	if(number < 10)
+		return "0[number]"
+	else
+		return "[number]"
+
+/datum/controller/subsystem/city_time/fire()
+	if(minutes == 59)
+		minutes = 0
+		hour =  get_next_hour(hour)
+	else
+		minutes = max(0, minutes+1)
+
+	timeofnight = "[get_watch_number(hour)]:[get_watch_number(minutes)]"
+	// TFN EDIT REFACTOR START
+	if(minutes == 0)
+		for(var/mob/living/carbon/werewolf/W in GLOB.player_list)
+			if(W?.stat != DEAD && W?.key)
+				var/datum/preferences/char_sheet = GLOB.preferences_datums[ckey(W.key)]
+				char_sheet?.add_experience(2)
+		for(var/mob/living/carbon/human/H in GLOB.human_list)
+			if(H?.stat != DEAD && H?.key)
+				var/datum/preferences/char_sheet = GLOB.preferences_datums[ckey(H.key)]
+				if(char_sheet)
+					char_sheet.add_experience(2)
+
+					var/role = H.mind?.assigned_role
+
+					if(role in list("Prince", "Sheriff", "Hound", "Seneschal", "Chantry Regent", "Baron", "Dealer", "Primogen Ventrue", "Primogen Lasombra", "Primogen Banu Haqim", "Primogen Nosferatu", "Primogen Malkavian", "Endron Branch Lead", "Endron Internal Affairs Agent", "Endron Executive", "Endron Chief of Security", "Painted City Councillor", "Painted City Keeper", "Painted City Warder", "Painted City Truthcatcher", "Amberlgade Councillor", "Amberglade Keeper", "Amberglade Truthcatcher", "Amberglade Warder"))
+						char_sheet.add_experience(2)
+
+
+					if(!HAS_TRAIT(H, TRAIT_NON_INT))
+						if(H.total_erp > 3000)
+							char_sheet.add_experience(3)
+							H.total_erp = 0
+						if(H.total_erp > 1500)
+							char_sheet.add_experience(2)
+							H.total_erp = 0
+						if(H.total_cleaned > 25)
+							char_sheet.add_experience(1)
+							H.total_cleaned = 0
+						if(role == "Graveyard Keeper")
+							if(SSgraveyard.total_good > SSgraveyard.total_bad)
+								char_sheet.add_experience(1)
+
+					char_sheet.save_preferences()
+					char_sheet.save_character()
+
+	if(hour == 5 && minutes == 30)
+		to_chat(world, "<span class='ghostalert'>The night is ending...</span>")
+
+	if(hour == 5 && minutes == 45)
+		to_chat(world, "<span class='ghostalert'>First rays of the sun illuminate the sky...</span>")
+
+	if(hour == 6 && minutes == 0)
+		to_chat(world, "<span class='ghostalert'>THE NIGHT IS OVER.</span>")
+		for(var/mob/living/carbon/human/H in GLOB.human_list)
+			var/datum/preferences/char_sheet = GLOB.preferences_datums[ckey(H.key)]
+			if(char_sheet)
+				var/role = H.mind?.assigned_role
+				if(role in list("Hound", "Street Janitor", "Bruiser", "Graveyard Keeper"))
+					char_sheet.masquerade_score += 2
+					char_sheet.save_character()
+
+		for(var/dead_mob as anything in GLOB.dead_mob_list)
+			for(var/masquerade_breach as anything in SSmasquerade.masquerade_breachers)
+				if(dead_mob in masquerade_breach)
+					var/list/masquerade_breach_list = masquerade_breach
+					if(islist(masquerade_breach_list[2])) //If its the skull list, then its a long term masq breach. Clear it.
+						for(var/atom/list_object as anything in masquerade_breach_list[2])
+							SSmasquerade.masquerade_reinforce(list_object, masquerade_breach_list[1], MASQUERADE_REASON_PREFERENCES)
+					else
+						var/atom/object = masquerade_breach_list[2]
+						SEND_SIGNAL(object, COMSIG_ALL_MASQUERADE_REINFORCE)
+
+		SSticker.force_ending = 1
+		SSticker.current_state = GAME_STATE_FINISHED
+		GLOB.canon_event = FALSE
+		toggle_ooc(TRUE) // Turn it on
+		toggle_dooc(TRUE)
+		SSticker.declare_completion()
+		Master.SetRunLevel(RUNLEVEL_POSTGAME)
+		for(var/mob/living/carbon/human/H in GLOB.human_list)
+			if(HAS_TRAIT(H, TRAIT_NO_SUN_ASHING))
+				continue
+			var/area/vtm/V = get_area(H)
+			if(iskindred(H) && V.upper)
+				H.death()
+			if(iscathayan(H) && V.upper)
+				H.death()

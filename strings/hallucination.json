@@ -1,0 +1,222 @@
+{
+	"suspicion": [
+		"I'm watching you...",
+		"I know what you're up to.",
+		"What are you hiding?",
+		"I saw it, admit it."
+	],
+
+	"conversation": [
+		"Yes.",
+		"Certainly.",
+		"Of course.",
+		"No.",
+		"Nope.",
+		"No way.",
+		"Oh...",
+		"Why?",
+		"Но...",
+		"Wait a minute.",
+		"Hmmm.",
+		"Yes, I know.",
+		"Strange."
+	],
+
+	"greetings": [
+		"...",
+		"hey, hey...",
+		"Hello!",
+		"Hello.",
+		"Wait,..",
+		"My fairest greetings, beautiful."
+	],
+
+	"getout": [
+		"Get out.",
+		"Get out!",
+		"Leave.",
+		"Fuck off.",
+		"FUCK YOU!",
+		"Out!"
+	],
+
+	"weird": [
+		"Oh, oh? Wow!",
+		"Urgh...",
+		"ЕЕЕЕЕЕ.",
+		"Huh...huh...huh...",
+		"I'm turning inside out..",
+		"Let me help you.",
+		"I'm going to reach inside you and pull out all those pretty little organs."
+	],
+
+	"didyouhearthat": [
+		"Did you hear that noise?",
+		"Who was that?",
+		"What was that?"
+	],
+
+	"add_name": [
+		"%TARGETNAME%, ",
+		"%TARGETNAME% ",
+		""
+	],
+
+	"doubt": [
+		"Why?",
+		"What?",
+		"Wait, what?",
+		"Wait.",
+		"Just a second. What?",
+		"Ohh.. uh..."
+	],
+
+	"aggressive": [
+		"Give it to me!",
+		"I'm going to hurt your pretty little face!",
+		"You asked for what's about to happen to you!",
+		"You deserve this!"
+	],
+
+	"help": [
+		"HELP!",
+		"GET HELP!",
+		"HELP ME!!",
+		"PLEASE, NO...",
+		"NO, NO, NO, DON'T HURT ME!",
+		"PLEASE, HELP ME!",
+		"I'M BEGGING YOU, PLEASE HELP!",
+		"PLEASE, HELP HER!",
+		"THEY NEED YOUR HELP!",
+		"PLEASE GOD, HELP US!!",
+		"HELP YOURSELF! RUN! DON'T LET THEM GET YOU!"
+	],
+
+	"escape": [
+		"RUN!!",
+		"They're chasing me!",
+		"It's here, Run!",
+		"Follow me!",
+		"Come with me."
+	],
+
+	"infection_advice": [
+		"Don't come too close, I'm sick.",
+		"Don't touch me.",
+		"Are you alright? You look sick.",
+		"Help me, I'm dying..",
+		"Put me.. out of my misery.."
+	],
+
+	"people": [
+		"The Prince",
+		"The Sheriff",
+		"The Doctor",
+		"The Gravekeeper",
+		"The barkeep",
+		"The Hound",
+		"The janitor",
+		"the dealer",
+		"supply manager"
+	],
+
+	"accusations": [
+		"is Sabbat",
+		"Is Bahari",
+		"is a witch",
+		"is a vampire",
+		"is a werewolf",
+		"is a traitor",
+		"is an alien",
+		"is a Diablerist",
+		"is Caitiff"
+	],
+
+	"threat": [
+		"sabbat",
+		"expendable",
+		"caitiff",
+		"primogen",
+		"traitor",
+		"anarch",
+		"tzimisce",
+		"werewolf"
+	],
+
+	"location": [
+		"near the park",
+		"at city hall",
+		"at the law office",
+		"at the police station",
+		"at the prince's office",
+		"at the factory",
+		"in harmony",
+		"in the hospital",
+		"in the ghetto",
+		"in the morgue",
+		"in the Barons's office",
+		"in the church",
+		"in the library",
+		"in the dining room"
+	],
+
+	"sublocation": [
+		"city ​​hall",
+		"law office",
+		"Anarch's bar",
+		"police station",
+		"park",
+		"warehouse",
+		"hospital",
+		"ghetto",
+		"morgue",
+		"prince's office",
+		"church",
+		"theatre",
+		"dining room"
+	],
+
+	"advice": [
+		"Hmm... I don't know.",
+		"Yes. exactly like that.",
+		"No. Stop.",
+		"Beware of this guy.",
+		"You can trust him.",
+		"He wants to kill you.",
+		"Kill him. You know who.",
+		"Hide somewhere. Fast.",
+		"Good luck. You'll need it.",
+		"You have my permission. Do it.",
+		"Just do it."
+	],
+
+	"chemicals": [
+		"Something",
+		"Ooze",
+		"Fire",
+		"Earth",
+		"Lighting",
+		"Air",
+		"Magic",
+		"Spiders",
+		"Button",
+		"Surprise",
+		"Happines",
+		"Despair",
+		"Blood",
+		"Awesome",
+		"Infinity",
+		"Electronics",
+		"Time",
+		"Space",
+		"Pain",
+		"Guts",
+		"Life",
+		"Death",
+		"Phlebotinium",
+		"Mana",
+		"Energy",
+		"?????"
+	]
+
+}
